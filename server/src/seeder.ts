@@ -13,15 +13,22 @@ const seedData = async () => {
         await User.deleteMany();
         await Upload.deleteMany();
 
+        const adminEmail = process.env.ADMIN_EMAIL;
+        const adminPassword = process.env.ADMIN_PASSWORD;
+
+        if (!adminEmail || !adminPassword) {
+            throw new Error('ADMIN_EMAIL and ADMIN_PASSWORD must be defined in .env');
+        }
+
         const salt = await bcrypt.genSalt(10);
-        const passwordHash = await bcrypt.hash('password123', salt);
+        const passwordHash = await bcrypt.hash(adminPassword, salt);
 
         await User.create({
-            email: 'lusaibnetstager@gmail.com',
+            email: adminEmail,
             passwordHash: passwordHash
         });
 
-        console.log('Seeded User: lusaibnetstager@gmail.com / password123');
+        console.log(`Seeded User: ${adminEmail} / ${adminPassword}`);
         process.exit();
     } catch (error) {
         console.error(error);
