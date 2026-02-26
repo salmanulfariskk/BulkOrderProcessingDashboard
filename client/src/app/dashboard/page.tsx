@@ -50,6 +50,15 @@ export default function DashboardPage() {
         limit: 10
     });
 
+    const handleView =  async () => {
+        try {
+            const res = await api.get('/products')
+        } catch (error) {
+            
+        }
+        
+    }
+
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -389,6 +398,7 @@ export default function DashboardPage() {
                                     <th className="px-6 py-4 font-bold">AOV</th>
                                     <th className="px-6 py-4 font-bold">Uploaded At</th>
                                     <th className="px-6 py-4 font-bold rounded-tr-lg">Processed At</th>
+                                    <th className="px-6 py-4 font-bold rounded-tr-lg">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100">
@@ -456,6 +466,11 @@ export default function DashboardPage() {
                                                             {upload.errorMessage}
                                                         </div>
                                                     )}
+                                                </div>
+                                            </td>
+                                            <td>
+                                               <div onClick={handleView} className="text-sm text-slate-600 font-medium bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 inline-block">
+                                                   View
                                                 </div>
                                             </td>
                                         </tr>

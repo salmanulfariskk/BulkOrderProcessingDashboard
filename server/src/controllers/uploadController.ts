@@ -90,4 +90,4 @@ export const getUploads = asyncHandler(async (req: AuthRequest, res: Response) =
             limit: limitNumber
         }
     });
-});
+})

@@ -7,6 +7,7 @@ import { initSocket } from './socket';
 import authRoutes from './routes/authRoutes';
 import uploadRoutes from './routes/uploadRoutes';
 import { startWorker } from './workers/jobProcessor';
+import productRoutes from './routes/productRoutes'
 
 dotenv.config();
 connectDB();
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 // Routes will go here
 app.use('/api/auth', authRoutes);
 app.use('/api/uploads', uploadRoutes);
+app.use('/api/products', productRoutes)
 
 // Global Error Handler
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
